@@ -1,10 +1,6 @@
 ifdef OS
-   export PYTHON_COMMAND=python
-   export UV_INSTALL_CMD=pip install uv==0.2.15
    export VENV_BIN=.venv/Scripts
 else
-   export PYTHON_COMMAND=python3.12
-   export UV_INSTALL_CMD=pip install uv==0.2.15
    export VENV_BIN=.venv/bin
 endif
 
