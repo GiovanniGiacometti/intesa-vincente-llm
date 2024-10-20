@@ -1,21 +1,21 @@
 import fire
-import speech_recognition as sr
 from dotenv import load_dotenv
-import os
+
+from intesa_vincente_llm.game.game import IntesaVincente
+from intesa_vincente_llm.utils.logging import setup_logging
+import logging
 
 
 def main():
-    r = sr.Recognizer()
+    logging.info("The game is about to start!")
 
-    with sr.Microphone() as source:
-        r.adjust_for_ambient_noise(source, duration=2)
+    game = IntesaVincente()
+    game.play()
 
-        print("Say something!")
-        audio = r.listen(source)
-
-        print("You said: " + r.recognize_whisper_api(audio, api_key=os.environ["OPENAI_API_KEY"]))  # type: ignore
+    logging.info("The game has ended!")
 
 
 if __name__ == "__main__":
     load_dotenv()
+    setup_logging()
     fire.Fire(main)
