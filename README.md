@@ -22,7 +22,7 @@ First, you need to clone the repository to a folder that suits you.
 
 Then, you should create a virtual enviroment and install the requirements.
 
-I'm using `uv` as package manager. If you also want to use it, you can install it following the [guide](https://docs.astral.sh/uv/getting-started/installation/).
+We're using `uv` as package manager. If you also want to use it, you can install it following the [guide](https://docs.astral.sh/uv/getting-started/installation/).
 
 Then, you can run the following commands:
 
@@ -51,6 +51,16 @@ Notice that the logic currently implemented is slightly different from the origi
 In the real game, the third player can try to guess the word at any time, even interrupting the two players giving clues.
 In this implementation, the third player (aka the LLM) can only guess the word after the two players have given their clues.
 However, this might [change soon](https://platform.openai.com/docs/api-reference/streaming)...
+
+## How it's done
+
+We use the [speech recognition](https://github.com/Uberi/speech_recognition) library to catch the audio.
+
+The speech is then transcribed using [Whisper](https://openai.com/index/introducing-chatgpt-and-whisper-apis) by OpenAI, queried through their API. I would have preferred to use the offline version of the model, but unfortunately it was running too slow in my machine.
+
+The transcribed text is then fed into an LLM to improve its grammar and fix eventual syntax mistakes. The prompts makes it clear that the main intentions of the transcription should not be modified, but you know how it goes. Nonetheless, I've found it having a positive effect in general.
+
+Another LLM (it's actually the same model, but queried in a different call) is then instructed to guess the words given the transcribed text.
 
 ## Disclaimer
 
