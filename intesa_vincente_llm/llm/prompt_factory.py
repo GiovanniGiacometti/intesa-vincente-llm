@@ -33,9 +33,7 @@ class PromptFactory:
                 raise ValueError(f"Unsupported language: {language}")
 
     @staticmethod
-    def make_prompt_for_word_guessing_instruction(
-        language: Language
-    ) -> str:
+    def make_prompt_for_word_guessing_instruction(language: Language) -> str:
         """
         Create a system prompt to instruct the llm to guess a word.
         """

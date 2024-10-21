@@ -1,4 +1,5 @@
 import logging
+import time
 
 from intesa_vincente_llm.enums import Language, ImproveTranscriptionStrategy
 import questionary
@@ -6,30 +7,30 @@ import questionary
 from intesa_vincente_llm.listener.factory import ListenerFactory
 from intesa_vincente_llm.llm.factory import LLMFactory
 from intesa_vincente_llm.llm.prompt_factory import PromptFactory
-import random
 from intesa_vincente_llm.recognizer.factory import SpeechRecognizerFactory
+from intesa_vincente_llm.utils.word_provider import WordProvider
 
 
 class IntesaVincente:
     @classmethod
     def play(cls):
+
         # 1. Ask the user to choose a language
 
         language = cls._ask_language()
 
         # 2. Print the word that the llm will try to guess
 
-        secret_word = cls._get_word_to_guess(language)
+        secret_word = WordProvider.get_word_to_guess(language)
 
-        logging.info(
-            f"The word that the llm will try to guess is: {secret_word}"
-        )
+        logging.info(f"The word that the llm will try to guess is: {secret_word}")
 
         # 3. Initialize the listener and listen
 
-        logging.info(
-            "Get ready to speak!"
-        )
+        cls._ask_if_ready()
+
+        logging.info("Get ready to speak!")
+        time.sleep(2)
 
         listener = ListenerFactory.make_microphone_listener()
         audio_data = listener.listen()
@@ -42,8 +43,6 @@ class IntesaVincente:
         )
 
         transcribed_text = recognizer.recognize(audio_data)
-
-        logging.info(f"Transcribed text: {transcribed_text}")
 
         # 5. Let the LLM guess the word
 
@@ -73,11 +72,6 @@ class IntesaVincente:
         return Language(language.lower())
 
     @staticmethod
-    def _get_word_to_guess(language: Language) -> str:
-        match language:
-            case Language.ENGLISH:
-                return random.choice(["table", "chair", "dog", "cat", "house", "car"])
-            case Language.ITALIAN:
-                return random.choice(["tavolo", "sedia", "cane", "gatto", "casa", "macchina"])
-            case _:
-                raise ValueError(f"Unsupported language: {language}")
+    def _ask_if_ready():
+        ready = questionary.confirm("Are you ready to play?").ask()
+        return ready

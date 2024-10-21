@@ -29,9 +29,7 @@ class MicrophoneSpeechRecognition:
         with Microphone(
             chunk_size=chunk_size, sample_rate=sample_rate, device_index=device_index
         ) as source:
-
             if wait_for_ambient_noise_adjustment is not None:
-
                 logging.info("Calibrating noise...")
 
                 r.adjust_for_ambient_noise(
