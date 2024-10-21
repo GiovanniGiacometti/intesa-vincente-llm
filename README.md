@@ -4,7 +4,7 @@ Have you ever been excited to play ["Intesa Vincente"](https://it.wikipedia.org/
 but found yourself one player short? Good news! This dilemma has been resolved. 
 Now you can enjoy the game with just you, a friend, and an AI language model filling in as the third player.
 
-## [Game explanation](#exp)
+## Game explanation
 
 "Reazione a Catena" (Chain Reaction) is a popular Italian television game show. "Intesa Vincente" (Winning Understanding) is one of the challenges within the show.
 In "Intesa Vincente," two contestants from the same team must work together to help their third teammate guess a specific word. The rules are as follows:
@@ -47,7 +47,7 @@ uv run main.py
 
 and the game will start.
 
-Notice that the logic currently implemented is slightly different from the [original one](#exp). 
+Notice that the logic currently implemented is slightly different from the original one. 
 In the real game, the third player can try to guess the word at any time, even interrupting the two players giving clues.
 In this implementation, the third player (aka the LLM) can only guess the word after the two players have given their clues.
 However, this might [change soon](https://platform.openai.com/docs/api-reference/streaming)...
