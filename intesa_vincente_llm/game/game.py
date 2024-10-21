@@ -6,6 +6,7 @@ import questionary
 from intesa_vincente_llm.listener.factory import ListenerFactory
 from intesa_vincente_llm.llm.factory import LLMFactory
 from intesa_vincente_llm.llm.prompt_factory import PromptFactory
+import random
 from intesa_vincente_llm.recognizer.factory import SpeechRecognizerFactory
 
 
@@ -27,7 +28,7 @@ class IntesaVincente:
         # 3. Initialize the listener and listen
 
         logging.info(
-            f"Get ready to speak!"
+            "Get ready to speak!"
         )
 
         listener = ListenerFactory.make_microphone_listener()
@@ -75,8 +76,8 @@ class IntesaVincente:
     def _get_word_to_guess(language: Language) -> str:
         match language:
             case Language.ENGLISH:
-                return "table"
+                return random.choice(["table", "chair", "dog", "cat", "house", "car"])
             case Language.ITALIAN:
-                return "tavolo"
+                return random.choice(["tavolo", "sedia", "cane", "gatto", "casa", "macchina"])
             case _:
                 raise ValueError(f"Unsupported language: {language}")

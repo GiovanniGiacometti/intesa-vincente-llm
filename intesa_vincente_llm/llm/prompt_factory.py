@@ -23,9 +23,9 @@ class PromptFactory:
             case Language.ITALIAN:
                 return """
                        Riceverai una trascrizione di un discorso. Il testo sarà composto da una lista di parole
-                       che sono state pronunciate dallo speaker. Il tuo compito è correggere la trascrizione
+                       che sono state pronunciate da una persona. Il tuo compito è correggere la trascrizione
                        correggendo gli errori di ortografia. Dovresti cambiare solo le parole di cui sei sicuro al 100%
-                       che sono sbagliate. Se non sei sicuro di una parola, devi lasciarla com'è.
+                       che siano sbagliate. Se non sei sicuro di una parola, devi lasciarla com'è.
                        Non aggiungere altro nella tua risposta, il tuo output dovrebbe essere uguale all'input,
                        a parte le correzioni.
                         """
