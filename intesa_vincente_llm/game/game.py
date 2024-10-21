@@ -14,7 +14,6 @@ from intesa_vincente_llm.utils.word_provider import WordProvider
 class IntesaVincente:
     @classmethod
     def play(cls):
-
         # 1. Ask the user to choose a language
 
         language = cls._ask_language()
