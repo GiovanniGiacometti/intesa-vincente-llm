@@ -7,6 +7,9 @@ endif
 lock:
 	. $(VENV_BIN)/activate && uv lock
 
+compile:
+	. $(VENV_BIN)/activate && uv pip compile pyproject.toml -o requirements.txt
+
 sync:
 	. $(VENV_BIN)/activate && uv sync
 
@@ -19,3 +22,6 @@ format:
 lint:
 	. $(VENV_BIN)/activate && ruff check --fix
 	. $(VENV_BIN)/activate && mypy --ignore-missing-imports --install-types --non-interactive --package intesa_vincente_llm
+
+create-env:
+	uv venv
