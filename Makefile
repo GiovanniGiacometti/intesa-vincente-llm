@@ -25,3 +25,6 @@ lint:
 
 create-env:
 	uv venv
+
+upgrade-deps:
+	. $(VENV_BIN)/activate && uv lock --upgrade
