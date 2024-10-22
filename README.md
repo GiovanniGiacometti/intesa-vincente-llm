@@ -50,7 +50,6 @@ and the game will start.
 Notice that the logic currently implemented is slightly different from the original one. 
 In the real game, the third player can try to guess the word at any time, even interrupting the two players giving clues.
 In this implementation, the third player (aka the LLM) can only guess the word after the two players have given their clues.
-However, this might [change soon](https://platform.openai.com/docs/api-reference/streaming)...
 
 ## How it's done
 
